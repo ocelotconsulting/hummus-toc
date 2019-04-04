@@ -1,0 +1,12 @@
+{
+  "extends": "standard",
+  "rules": {
+      "object-curly-spacing": "off"
+  },
+  "globals": {
+    "describe": "readonly",
+    "beforeEach": "readonly",
+    "sinon": "readonly",
+    "it": "readonly"
+  }
+}
