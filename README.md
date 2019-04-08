@@ -15,7 +15,7 @@ As seen in the [test file](./test/runOutline.js), once the module is loaded, it 
 
 ```node
 const path = require('path')
-const createTOC = require('hummus-toc')
+const createTOC = require('@ocelot-consulting/hummus-toc')
 
 const inputFile = path.join(__dirname, 'data', 'existing.pdf')
 const outputFile = path.join(__dirname, 'data', 'new.pdf')
