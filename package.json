@@ -1,6 +1,6 @@
 {
   "name": "@ocelot-consulting/hummus-toc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An extension for HummusJS to add Table of Contents (including bookmarks).",
   "keywords": [
     "HummusJS",
