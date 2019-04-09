@@ -10,7 +10,9 @@ module.exports = (outline, tocPageCount) => {
   const makeTOC = (outln, tabLevel, prefix = '') => outln.reduce((acc, curr, idx) => {
     const entry = `${getTabs(tabLevel)}${prefix}${idx + 1} ${curr.title}`
     const paddingLength = lineLength - String(curr.page + tocPageCount + 1).length
-    const line = `${entry.padEnd(paddingLength, '.')}${curr.page + tocPageCount + 1}`
+    const line = curr.page
+      ? `${entry.padEnd(paddingLength, '.')}${curr.page + tocPageCount + 1}`
+      : entry
     if (curr.children) {
       acc.push({line, page: curr.page})
       const merged = acc.concat(makeTOC(curr.children, ++tabLevel, `${idx + 1}.`))

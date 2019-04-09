@@ -41,5 +41,5 @@ module.exports = (writer, text, customFont = null) => {
   })
 
   writer.writePage(page)
-  return pageSize
+  return pageSize || text.length
 }

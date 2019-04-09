@@ -14,7 +14,7 @@ const getLinks = (objCtx, parser, tocText, pageIndex, howManyPages, pageSize) =>
       myPage++
     }
     // only for page of links (calculated by height) currently being worked on
-    if (pageIndex === myPage) {
+    if (page && pageIndex === myPage) {
       const vertStart = isFirstLineOnSubsequentPage(pageSize, pageIndex, idx) ? verticalTextStart : verticalLineStart
       acc.push(createLink(objCtx, parser.getPageObjectID(page + howManyPages), [leftMarginEnd, vertStart, 505, vertStart + lineSpacing]))
     }

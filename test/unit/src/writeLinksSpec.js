@@ -44,12 +44,13 @@ describe('writeLinks', () => {
   it('writes the TOC pages using the writer', async () => {
     const howManyPages = 3
     const pageSize = 33
+    const numZeros = 2 // 2 entries have value of 0 in outline for this page
     const tocText = getTOCText(data, howManyPages)
     writeLinks(objCtx, copyCtx, parser, 1, tocText, howManyPages, pageSize)
     sinon.assert.calledWithExactly(parser.getPageObjectID.firstCall, 1)
-    parser.getPageObjectID.callCount.should.equal(1 + pageSize)
+    parser.getPageObjectID.callCount.should.equal(1 + pageSize - numZeros)
 
-    createLinkStub.callCount.should.equal(pageSize)
+    createLinkStub.callCount.should.equal(pageSize - numZeros)
     sinon.assert.calledWithExactly(createLinkStub.firstCall, objCtx, sinon.match.number, sinon.match.array)
 
     objCtx.startModifiedIndirectObject.callCount.should.equal(1)
@@ -66,7 +67,7 @@ describe('writeLinks', () => {
 
     objCtx.startArray.callCount.should.equal(1)
 
-    objCtx.writeIndirectObjectReference.callCount.should.equal(pageSize)
+    objCtx.writeIndirectObjectReference.callCount.should.equal(pageSize - numZeros)
     sinon.assert.calledWithExactly(objCtx.writeIndirectObjectReference.firstCall, linky)
 
     objCtx.endArray.callCount.should.equal(1)
