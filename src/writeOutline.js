@@ -12,17 +12,20 @@ const writeOutlines = (ctx, outlines, parent) => {
       .writeLiteralStringValue(title)
       .writeKey('Parent')
       .writeObjectReferenceValue(parent)
-      .writeKey('Dest')
 
-    ctx.startArray()
-    ctx.writeIndirectObjectReference(page)
-    ctx.writeName('XYZ')
-    const c = ctx.startFreeContext()
-    c.write([ 32, 110, 117, 108, 108, 32, 110, 117, 108, 108, 32, 48, 32 ]) // " null null 0 "
-    ctx.endFreeContext()
-    ctx.endArray()
+    if (page) {
+      d.writeKey('Dest')
+      ctx.startArray()
+      console.log(`The page is ${page}`)
+      ctx.writeIndirectObjectReference(page)
+      ctx.writeName('XYZ')
+      const c = ctx.startFreeContext()
+      c.write([ 32, 110, 117, 108, 108, 32, 110, 117, 108, 108, 32, 48, 32 ]) // " null null 0 "
+      ctx.endFreeContext()
+      ctx.endArray()
+    }
+
     ctx.endLine()
-
     if (childrenIds) {
       d.writeKey('Count')
         .writeNumberValue(outlines.length)

@@ -15,7 +15,7 @@ module.exports = (outline, tocPageCount) => {
       : entry
     if (curr.children) {
       acc.push({line, page: curr.page})
-      const merged = acc.concat(makeTOC(curr.children, ++tabLevel, `${idx + 1}.`))
+      const merged = acc.concat(makeTOC(curr.children, ++tabLevel, `${prefix}${idx + 1}.`))
       tabLevel--
       return merged
     }
