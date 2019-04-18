@@ -16,7 +16,6 @@ const writeOutlines = (ctx, outlines, parent) => {
     if (page) {
       d.writeKey('Dest')
       ctx.startArray()
-      console.log(`The page is ${page}`)
       ctx.writeIndirectObjectReference(page)
       ctx.writeName('XYZ')
       const c = ctx.startFreeContext()
