@@ -9,9 +9,9 @@ module.exports = (outline, tocPageCount) => {
   const lineLength = 60
   const makeTOC = (outln, tabLevel, prefix = '') => outln.reduce((acc, curr, idx) => {
     const entry = `${getTabs(tabLevel)}${prefix}${idx + 1} ${curr.title}`
-    const paddingLength = lineLength - String(curr.page + tocPageCount + 1).length
+    const paddingLength = lineLength - String(curr.page + tocPageCount).length
     const line = curr.page
-      ? `${entry.padEnd(paddingLength, '.')}${curr.page + tocPageCount + 1}`
+      ? `${entry.padEnd(paddingLength, '.')}${curr.page + tocPageCount}`
       : entry
     if (curr.children) {
       acc.push({line, page: curr.page})
