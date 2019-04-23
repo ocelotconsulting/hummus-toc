@@ -1,4 +1,4 @@
-module.exports = (objCtx, pageRef, [x1, y1, x2, y2]) => {
+module.exports = (objCtx, pageRef, [x1, y1, x2, y2], linkToTop = true) => {
   const annotationObj = objCtx.startNewIndirectObject()
   const dictionaryContext = objCtx.startDictionary()
 
@@ -15,7 +15,11 @@ module.exports = (objCtx, pageRef, [x1, y1, x2, y2]) => {
   objCtx.writeIndirectObjectReference(pageRef)
   objCtx.writeName('XYZ')
   const c = objCtx.startFreeContext()
-  c.write([ 32, 110, 117, 108, 108, 32, 110, 117, 108, 108, 32, 48, 32 ]) // " null null 0 "
+  if (linkToTop) {
+    c.write([ 32, 48, 32, 55, 57, 50, 32, 48, 32 ]) // " 0 792 0 " - go to top
+  } else {
+    c.write([ 32, 110, 117, 108, 108, 32, 110, 117, 108, 108, 32, 48, 32 ]) // " null null 0 " - stay at same position
+  }
   objCtx.endFreeContext()
   objCtx.endArray()
   objCtx.endLine()

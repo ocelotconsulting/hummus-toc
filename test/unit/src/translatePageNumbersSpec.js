@@ -23,15 +23,15 @@ describe('translatePageNumbers', () => {
     const smallOutline = [{page: 1, children: [{page: 2}]}]
     const beforeTranslationCount = countOutline(smallOutline[0].children) + 1
     const translated = translatePageNumbers(parser, smallOutline[0])
-    sinon.assert.calledWithExactly(parser.getPageObjectID.firstCall, 1)
-    sinon.assert.calledWithExactly(parser.getPageObjectID.secondCall, 2)
+    sinon.assert.calledWithExactly(parser.getPageObjectID.firstCall, 0)
+    sinon.assert.calledWithExactly(parser.getPageObjectID.secondCall, 1)
     parser.getPageObjectID.callCount.should.equal(2)
     parser.getPageObjectID.reset()
     assert.strictEqual(beforeTranslationCount, countOutline(translated.children) + 1)
 
     const translated2 = translatePageNumbers(parser, smallOutline[0], 3)
-    sinon.assert.calledWithExactly(parser.getPageObjectID.firstCall, 4)
-    sinon.assert.calledWithExactly(parser.getPageObjectID.secondCall, 5)
+    sinon.assert.calledWithExactly(parser.getPageObjectID.firstCall, 3)
+    sinon.assert.calledWithExactly(parser.getPageObjectID.secondCall, 4)
     parser.getPageObjectID.callCount.should.equal(2)
     assert.strictEqual(beforeTranslationCount, countOutline(translated2.children) + 1)
   })
